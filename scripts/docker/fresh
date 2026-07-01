@@ -1,0 +1,13 @@
+#!/bin/bash
+set -e
+
+echo "Esto eliminará contenedores y volúmenes del proyecto."
+read -p "¿Continuar? (s/N): " confirm
+
+if [ "$confirm" != "s" ] && [ "$confirm" != "S" ]; then
+    echo "Cancelado."
+    exit 0
+fi
+
+docker compose down -v
+docker compose up -d --build

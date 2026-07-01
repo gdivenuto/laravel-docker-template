@@ -1,0 +1,117 @@
+#!/bin/bash
+set -e
+
+COMMAND=$1
+shift || true
+
+case "$COMMAND" in
+
+  up)
+    ./scripts/docker/up "$@"
+    ;;
+
+  down)
+    ./scripts/docker/down "$@"
+    ;;
+
+  rebuild)
+    ./scripts/docker/rebuild "$@"
+    ;;
+
+  fresh)
+    ./scripts/docker/fresh "$@"
+    ;;
+
+  ps)
+    ./scripts/docker/ps "$@"
+    ;;
+
+  logs)
+    ./scripts/docker/logs "$@"
+    ;;
+
+  bash)
+    ./scripts/docker/bash "$@"
+    ;;
+
+  artisan)
+    ./scripts/laravel/artisan "$@"
+    ;;
+
+  migrate)
+    ./scripts/laravel/migrate "$@"
+    ;;
+
+  composer)
+    ./scripts/laravel/composer "$@"
+    ;;
+
+  test)
+    ./scripts/laravel/test "$@"
+    ;;
+
+  tinker)
+    ./scripts/laravel/tinker "$@"
+    ;;
+
+  npm)
+    ./scripts/frontend/npm "$@"
+    ;;
+
+  vite)
+    ./scripts/frontend/vite "$@"
+    ;;
+
+  build)
+    ./scripts/frontend/build "$@"
+    ;;
+
+  init)
+    ./scripts/utils/init "$@"
+    ;;
+
+  sync-env)
+    ./scripts/utils/sync-env "$@"
+    ;;
+
+  help|--help|-h|"")
+    echo ""
+    echo "Laravel Docker Template"
+    echo ""
+    echo "Uso:"
+    echo "  ./dev <comando> [argumentos]"
+    echo ""
+    echo "Docker:"
+    echo "  ./dev up              Levanta el entorno"
+    echo "  ./dev down            Baja el entorno"
+    echo "  ./dev rebuild         Reconstruye contenedores"
+    echo "  ./dev fresh           Borra volúmenes y reconstruye"
+    echo "  ./dev ps              Lista contenedores"
+    echo "  ./dev logs [servicio] Muestra logs"
+    echo "  ./dev bash            Entra al contenedor app"
+    echo ""
+    echo "Laravel:"
+    echo "  ./dev artisan ...     Ejecuta Artisan"
+    echo "  ./dev migrate         Ejecuta migraciones"
+    echo "  ./dev composer ...    Ejecuta Composer"
+    echo "  ./dev test            Ejecuta pruebas"
+    echo "  ./dev tinker          Abre Tinker"
+    echo ""
+    echo "Frontend:"
+    echo "  ./dev npm ...         Ejecuta npm"
+    echo "  ./dev vite            Ejecuta Vite dev server"
+    echo "  ./dev build           Ejecuta npm run build"
+    echo ""
+    echo "Utils:"
+    echo "  ./dev init            Inicializa el proyecto"
+    echo "  ./dev sync-env        Sincroniza .env raíz con src/.env"
+    echo ""
+    ;;
+
+  *)
+    echo "Comando no reconocido: $COMMAND"
+    echo "Ejecutá ./dev help para ver los comandos disponibles."
+    exit 1
+    ;;
+
+esac

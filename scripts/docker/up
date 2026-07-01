@@ -1,0 +1,8 @@
+#!/bin/bash
+set -e
+
+if [ -f "src/.env" ]; then
+    ./scripts/utils/sync-env
+fi
+
+docker compose up -d --build

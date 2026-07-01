@@ -1,0 +1,56 @@
+#!/bin/bash
+set -e
+
+echo "Inicializando plantilla Laravel + Docker..."
+
+if [ ! -f ".env" ]; then
+    echo "Creando .env desde .env.example..."
+    cp .env.example .env
+fi
+
+if [ ! -d "src" ]; then
+    mkdir src
+fi
+
+echo "Levantando contenedores..."
+docker compose up -d --build
+
+if [ ! -f "src/artisan" ]; then
+    echo "No se detectó Laravel en src/."
+    echo "Creando nuevo proyecto Laravel..."
+
+    docker compose exec app composer create-project laravel/laravel .
+fi
+
+if [ ! -f "src/.env" ]; then
+    echo "Creando src/.env..."
+    cp src/.env.example src/.env
+fi
+
+echo "Sincronizando variables de entorno..."
+./scripts/sync-env
+
+echo "Reiniciando contenedor app para aplicar configuración..."
+docker compose restart app
+
+echo "Generando APP_KEY..."
+docker compose exec app php artisan key:generate --force
+
+echo "Creando link simbólico storage..."
+docker compose exec app php artisan storage:link
+
+echo "Ejecutando migraciones..."
+docker compose exec app php artisan migrate
+
+echo ""
+echo "Proyecto listo."
+echo ""
+echo "Aplicación:"
+echo "http://localhost:${APP_PORT}"
+echo ""
+echo "phpMyAdmin:"
+echo "http://localhost:${PMA_PORT}"
+echo ""
+echo "MySQL externo:"
+echo "localhost:${MYSQL_PORT}"
+echo ""

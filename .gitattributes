@@ -1,0 +1,22 @@
+* text=auto eol=lf
+
+*.php text
+*.blade.php text
+*.js text
+*.ts text
+*.css text
+*.scss text
+*.json text
+*.xml text
+*.yml text
+*.yaml text
+*.md text
+*.env text
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.zip binary

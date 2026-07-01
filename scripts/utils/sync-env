@@ -1,0 +1,49 @@
+#!/bin/bash
+set -e
+
+ROOT_ENV=".env"
+LARAVEL_ENV="src/.env"
+
+if [ ! -f "$ROOT_ENV" ]; then
+    echo "Error: no existe .env en la raíz."
+    echo "Creá uno con: cp .env.example .env"
+    exit 1
+fi
+
+if [ ! -f "$LARAVEL_ENV" ]; then
+    echo "Error: no existe src/.env."
+    echo "Creá Laravel primero o copiá src/.env.example a src/.env."
+    exit 1
+fi
+
+source "$ROOT_ENV"
+
+echo "Sincronizando variables Docker -> Laravel..."
+
+set_env_value() {
+    local key=$1
+    local value=$2
+
+    if grep -q "^${key}=" "$LARAVEL_ENV"; then
+        sed -i "s|^${key}=.*|${key}=${value}|" "$LARAVEL_ENV"
+    else
+        echo "${key}=${value}" >> "$LARAVEL_ENV"
+    fi
+}
+
+set_env_value "DB_CONNECTION" "mysql"
+set_env_value "DB_HOST" "mysql"
+set_env_value "DB_PORT" "3306"
+set_env_value "DB_DATABASE" "$MYSQL_DATABASE"
+set_env_value "DB_USERNAME" "$MYSQL_USER"
+set_env_value "DB_PASSWORD" "$MYSQL_PASSWORD"
+
+set_env_value "MAIL_MAILER" "smtp"
+set_env_value "MAIL_SCHEME" "null"
+set_env_value "MAIL_HOST" "mailpit"
+set_env_value "MAIL_PORT" "1025"
+set_env_value "MAIL_USERNAME" "null"
+set_env_value "MAIL_PASSWORD" "null"
+set_env_value "MAIL_FROM_ADDRESS" "test@example.com"
+
+echo "Variables sincronizadas correctamente."

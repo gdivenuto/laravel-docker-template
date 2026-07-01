@@ -1,0 +1,41 @@
+name: Validate Template
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+
+  pull_request:
+
+jobs:
+  validate:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate Docker Compose
+        run: docker compose config
+
+      - name: Check required files
+        run: |
+          test -f Dockerfile
+          test -f docker-compose.yml
+          test -f README.md
+          test -f LICENSE
+          test -f CHANGELOG.md
+          test -f dev
+
+      - name: Make scripts executable
+        run: |
+          chmod +x dev
+          find scripts -type f -exec chmod +x {} \;
+
+      - name: Validate shell scripts
+        run: |
+          bash -n dev
+          find scripts -type f -exec bash -n {} \;
