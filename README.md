@@ -77,7 +77,7 @@ laravel-docker-template/
 ## 1. Clonar el repositorio
 
 ```bash
-git clone <repositorio>
+git clone https://github.com/gdivenuto/laravel-docker-template.git
 cd laravel-docker-template
 ```
 
