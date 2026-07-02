@@ -17,8 +17,7 @@ Ignorá estas carpetas:
 
 ## Contexto general
 
-Este proyecto corresponde a un sistema web compuesto por subsistemas cuya versión anterior se encuentra en el directorio `sgl_anterior/`. 
-**El directorio `sgl_anterior/` es de solo lectura y sirve únicamente como referencia para la migración; sus archivos no deben modificarse bajo ninguna circunstancia.** Todo el desarrollo nuevo se realiza en la raíz bajo la estructura de Laravel 13, PHP 8.3 y una base de datos MySQL nueva, diseñada de cero con el esquema estándar que el nuevo framework requiere.
+Todo el desarrollo se realiza bajo la estructura de Laravel 13, PHP 8.3 y una base de datos MySQL nueva, diseñada de cero con el esquema estándar que el nuevo framework requiere.
 
 ## Stack principal
 
