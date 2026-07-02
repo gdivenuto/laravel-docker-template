@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<plantilla>
+
+<!-- **************************************************************************
+Definición de campos 
+
+Notas:
+	* El ID de la plantilla debe ser igual al nombre del archivo, sin extension ni ruta.
+	* El campo 'destino' de la plantilla indica desde donde será visible la misma: puede 
+	  ser 'todos', expe_elec' o 'firma_online'.
+	* En las expresiones regulares, las barras invertidas deben escaparse dobles.
+	* En las expresiones regulares, los caracteres multibytes (caracteres raros de UTF-8),
+	  deben escribirse con su código escapado de javascript.
+	* En caso de que la misma expresión regular presente diferencias (PCRE de PHP vs 
+	  RegEx de JS), se puede utilizar el campo 'regex_js', el cual si existe, reemplaza
+	  la expresión regular para el lado del cliente (HTML+JS).
+	* Existen campos predefinidos, algunos del generador de templates, otros
+	  agregados a demanda por la aplicación.
+
+*************************************************************************** -->
+<config>
+{
+	"plantilla": {
+		"id": "plantilla_pyp_devolucion_general",
+		"destino": "expe_elec",
+		"categoria": "Prensa y Protocolo",
+		"nombre": "Devolución General de Expediente - Archivo",
+		"descripcion": "",
+		"version": "0.0.0.2",
+		"autor": "Divenuto, Gabriel Eduardo"
+	},
+	"campos": []
+}
+</config>
+
+<!-- **************************************************************************
+Texto de la plantilla 
+
+Notas:
+	* Todos los tags deben estar cerrados, por ejemplo <p></p> o <br/>.
+	* Las entidades HTML por ejemplo &aacute; deben evitarse. O se escribe el caracter directamente,
+	  o se utiliza la entidad XML, por ejemplo &#160; (equivalente a la á).
+
+*************************************************************************** -->
+<texto>
+	<p align="right">
+		<strong>Mar del Plata, Buenos Aires</strong><br/>
+		{{pred_fecha_str}}
+	</p>
+	<p><strong>Referencia:</strong> {{pred_expediente_etiqueta}}<br/></p>
+	<hr/>
+	<p>Habiéndose realizado la entrega correspondiente de las presentes actuaciones, procédase a su archivo.</p>
+	<p>
+		<br/>
+		{{pred_usuario_iniciales}}
+	</p>
+</texto>
+
+</plantilla>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<plantilla>
+
+<!-- **************************************************************************
+Definición de campos 
+
+Notas:
+	* El ID de la plantilla debe ser igual al nombre del archivo, sin extension ni ruta.
+	* El campo 'destino' de la plantilla indica desde donde será visible la misma: puede 
+	  ser 'todos', expe_elec' o 'firma_online'.
+	* En las expresiones regulares, las barras invertidas deben escaparse dobles.
+	* En las expresiones regulares, los caracteres multibytes (caracteres raros de UTF-8),
+	  deben escribirse con su código escapado de javascript.
+	* En caso de que la misma expresión regular presente diferencias (PCRE de PHP vs 
+	  RegEx de JS), se puede utilizar el campo 'regex_js', el cual si existe, reemplaza
+	  la expresión regular para el lado del cliente (HTML+JS).
+	* Existen campos predefinidos, algunos del generador de templates, otros
+	  agregados a demanda por la aplicación.
+
+*************************************************************************** -->
+<config>
+{
+	"plantilla": {
+		"id": "plantilla_me_desarchivo_com",
+		"categoria": "Mesa de Entradas",
+		"destino": "expe_elec",
+		"nombre": "Desarchivo y Vuelta a Comisión",
+		"descripcion": "",
+		"version": "0.0.0.3",
+		"autor": "Vergara, Carlos Gabriel"
+	},
+	"campos": [
+		{
+			"id": "f_concejal",
+			"tipo": "CampoTexto",
+			"nombre": "Concejal Solicitante",
+			"obligatorio": true,
+			"placeholder": "Ingrese el nombre del Concejal solicitante.",
+			"default": "",
+			"regex": "/^[a-z\\x{00C0}-\\x{017F}\\s]{1,100}$/ui",
+			"regex_js": "/^[a-z\\u00C0-\\u017F\\s]{1,100}$/i"
+		},{
+			"id": "f_comision_1",
+			"tipo": "CampoSelect",
+			"nombre": "Comisión 1",
+			"obligatorio": true,
+			"valores": ["", "AMBIENTE, DESARROLLO SOSTENIBLE Y SERVICIOS SANITARIOS", "DEPORTES Y RECREACION", "DERECHOS HUMANOS, IGUALDAD DE OPORTUNIDADES Y DISCAPACIDAD", "EDUCACION, CULTURA, CIENCIA E INVESTIGACION", "HACIENDA, PRESUPUESTO Y CUENTAS", "INDUSTRIA, COMERCIO, PESCA, INNOVACION Y TRABAJO", "LABOR DELIBERATIVA", "LEGISLACION, INTERPRETACION, REGLAMENTO", "MOVILIDAD URBANA", "OBRAS Y PLANEAMIENTO", "POLITICAS DE GENERO, MUJER Y DIVERSIDAD", "SALUD COMUNITARIA Y DESARROLLO HUMANO", "SEGURIDAD PUBLICA Y PROTECCION DE LA COMUNIDAD", "TURISMO"],
+			"default": 0
+		},{
+			"id": "f_comision_2",
+			"tipo": "CampoSelect",
+			"nombre": "Comisión 2",
+			"obligatorio": false,
+			"valores": ["", "AMBIENTE, DESARROLLO SOSTENIBLE Y SERVICIOS SANITARIOS", "DEPORTES Y RECREACION", "DERECHOS HUMANOS, IGUALDAD DE OPORTUNIDADES Y DISCAPACIDAD", "EDUCACION, CULTURA, CIENCIA E INVESTIGACION", "HACIENDA, PRESUPUESTO Y CUENTAS", "INDUSTRIA, COMERCIO, PESCA, INNOVACION Y TRABAJO", "LABOR DELIBERATIVA", "LEGISLACION, INTERPRETACION, REGLAMENTO", "MOVILIDAD URBANA", "OBRAS Y PLANEAMIENTO", "POLITICAS DE GENERO, MUJER Y DIVERSIDAD", "SALUD COMUNITARIA Y DESARROLLO HUMANO", "SEGURIDAD PUBLICA Y PROTECCION DE LA COMUNIDAD", "TURISMO"],
+			"default": 0
+		},{
+			"id": "f_comision_3",
+			"tipo": "CampoSelect",
+			"nombre": "Comisión 3",
+			"obligatorio": false,
+			"valores": ["", "AMBIENTE, DESARROLLO SOSTENIBLE Y SERVICIOS SANITARIOS", "DEPORTES Y RECREACION", "DERECHOS HUMANOS, IGUALDAD DE OPORTUNIDADES Y DISCAPACIDAD", "EDUCACION, CULTURA, CIENCIA E INVESTIGACION", "HACIENDA, PRESUPUESTO Y CUENTAS", "INDUSTRIA, COMERCIO, PESCA, INNOVACION Y TRABAJO", "LABOR DELIBERATIVA", "LEGISLACION, INTERPRETACION, REGLAMENTO", "MOVILIDAD URBANA", "OBRAS Y PLANEAMIENTO", "POLITICAS DE GENERO, MUJER Y DIVERSIDAD", "SALUD COMUNITARIA Y DESARROLLO HUMANO", "SEGURIDAD PUBLICA Y PROTECCION DE LA COMUNIDAD", "TURISMO"],
+			"default": 0
+		},{
+			"id": "f_comision_4",
+			"tipo": "CampoSelect",
+			"nombre": "Comisión 4",
+			"obligatorio": false,
+			"valores": ["", "AMBIENTE, DESARROLLO SOSTENIBLE Y SERVICIOS SANITARIOS", "DEPORTES Y RECREACION", "DERECHOS HUMANOS, IGUALDAD DE OPORTUNIDADES Y DISCAPACIDAD", "EDUCACION, CULTURA, CIENCIA E INVESTIGACION", "HACIENDA, PRESUPUESTO Y CUENTAS", "INDUSTRIA, COMERCIO, PESCA, INNOVACION Y TRABAJO", "LABOR DELIBERATIVA", "LEGISLACION, INTERPRETACION, REGLAMENTO", "MOVILIDAD URBANA", "OBRAS Y PLANEAMIENTO", "POLITICAS DE GENERO, MUJER Y DIVERSIDAD", "SALUD COMUNITARIA Y DESARROLLO HUMANO", "SEGURIDAD PUBLICA Y PROTECCION DE LA COMUNIDAD", "TURISMO"],
+			"default": 0
+		},{
+			"id": "f_comision_5",
+			"tipo": "CampoSelect",
+			"nombre": "Comisión 5",
+			"obligatorio": false,
+			"valores": ["", "AMBIENTE, DESARROLLO SOSTENIBLE Y SERVICIOS SANITARIOS", "DEPORTES Y RECREACION", "DERECHOS HUMANOS, IGUALDAD DE OPORTUNIDADES Y DISCAPACIDAD", "EDUCACION, CULTURA, CIENCIA E INVESTIGACION", "HACIENDA, PRESUPUESTO Y CUENTAS", "INDUSTRIA, COMERCIO, PESCA, INNOVACION Y TRABAJO", "LABOR DELIBERATIVA", "LEGISLACION, INTERPRETACION, REGLAMENTO", "MOVILIDAD URBANA", "OBRAS Y PLANEAMIENTO", "POLITICAS DE GENERO, MUJER Y DIVERSIDAD", "SALUD COMUNITARIA Y DESARROLLO HUMANO", "SEGURIDAD PUBLICA Y PROTECCION DE LA COMUNIDAD", "TURISMO"],
+			"default": 0
+		}
+	]
+}
+</config>
+
+<!-- **************************************************************************
+Texto de la plantilla 
+
+Notas:
+	* Todos los tags deben estar cerrados, por ejemplo <p></p> o <br/>.
+	* Las entidades HTML por ejemplo &aacute; deben evitarse. O se escribe el caracter directamente,
+	  o se utiliza la entidad XML, por ejemplo &#160; (equivalente a la á).
+
+*************************************************************************** -->
+<texto>
+	<p align="right">
+		<strong>Mar del Plata, Buenos Aires</strong><br/>
+		{{pred_fecha_str}}
+	</p>
+	<p><strong>Referencia:</strong> {{pred_expediente_etiqueta}}<br/></p>
+	<hr/>
+	<p>De acuerdo a lo solicitado a fojas vuelta por el Concejal {{f_concejal}}, procédase al desarchivo de {{pred_expediente_etiqueta_extendida}}, agréguese la presente al mismo y gírese a las siguientes comisiones:</p>
+	<ul style="list-style-type: none">
+		<li><strong>{{f_comision_1}}</strong></li>
+		<li><strong>{{f_comision_2}}</strong></li>
+		<li><strong>{{f_comision_3}}</strong></li>
+		<li><strong>{{f_comision_4}}</strong></li>
+		<li><strong>{{f_comision_5}}</strong></li>
+	</ul>
+	<p>
+		<strong>SECRETARÍA HCD.</strong>
+	</p>
+</texto>
+
+</plantilla>

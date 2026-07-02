@@ -1,0 +1,269 @@
+
+/* DEFINICION DE LAS FUENTES TIPOGRÁFICAS
+*****************************************/
+/* Títulos: Gotham medium */
+@font-face {
+    font-family: 'gotham_mediumregular';
+    src: url('gotham/gotham-medium-webfont.eot');
+    src: url('gotham/gotham-medium-webfont.eot?#iefix') format('embedded-opentype'),
+         url('gotham/gotham-medium-webfont.woff2') format('woff2'),
+         url('gotham/gotham-medium-webfont.woff') format('woff'),
+         url('gotham/gotham-medium-webfont.ttf') format('truetype'),
+         url('gotham/gotham-medium-webfont.svg#gotham_mediumregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+/* Titulo light: Gotham extra light */
+@font-face {
+    font-family: 'gotham_extra_light';
+    src: url('gotham/GothamExLight.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+/* Texto: Gotham light */
+@font-face {
+    font-family: 'gotham_light';
+    src: url('gotham/Gotham-Light.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+/* Menú deseleccionado: Gotham condensed medium */
+@font-face {
+    font-family: 'gotham_condensed_medium';
+    src: url('gotham/GothamCondensed-Medium.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+/* Menú seleccionado: GoboldBlocky */
+@font-face {
+    font-family: 'GoboldBlocky';
+    src: url('gobold_blocky/Gobold-Blocky-Regular.otf');
+    src: url('gobold_blocky/Gobold-Blocky-Regular-WebFont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+  font-family: 'gotham_light';
+}
+a,
+.btn-link,
+.page-link,
+.nav-link {
+  outline: none;
+  text-decoration: none;
+  color: #2da4c6;
+}
+a:hover,
+.btn-link:hover,
+.page-link:hover,
+.nav-link:hover {
+  color: #9528b5 !important;
+  text-decoration: none;
+}
+
+iframe{
+  border: 0;
+}
+
+#menu_home .nav-link {
+  font-size: 12px;
+  color: #444041;
+}
+#menu_home .nav-link:hover {
+  color: #9528b5 !important;
+}
+
+.dropdown>.dropdown-menu {
+  border: 0;
+  margin-top: 0;
+  top: 200%;
+  transition: 0.3s all ease-in-out;
+}
+.dropdown:hover>.dropdown-menu {
+  display: block;
+  top: 100%;
+  border-top: 4px solid #9528b5;
+}
+.dropdown>.dropdown-toggle:active {
+  /* Sin esto, al hacer clic lo dejará visible (pegajoso a otro submenú) */
+  pointer-events: none;
+}
+.dropdown-item {
+  font-size: 13px;
+  color: #444041;
+  padding-left: 10px;
+}
+.dropdown-item:hover {
+  color: #9528b5;
+}
+.contenedor_submenu > a:after {
+    content: " ";
+    display: block;
+    width: 0;
+    height: 0;
+    border-color: transparent transparent transparent #ccc;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    margin-top: 5px;
+    margin-right: -5px;
+    float: right;
+}
+.contenedor_submenu:hover > a:after {
+    border-left-color: #9528b5;
+}
+.dropdown_menu_sistemas {
+  min-width: 7rem !important;
+}
+
+.color_naranja {
+  color: #f3a540;
+}
+
+.fuente_05 {
+  font-size: .5rem;
+}
+.fuente_07 {
+  font-size: .7rem;
+}
+.fuente_08 {
+  font-size: .8rem;
+}
+.fuente_09 {
+  font-size: .9rem;
+}
+.fuente_grande {
+  font-size: 1rem;
+}
+.fuente_titulos {
+  font-family: 'gotham_mediumregular';
+}
+.fuente_titulo_light {
+  font-family: 'gotham_extra_light';
+}
+.fuente_texto {
+  font-family: 'gotham_light';
+}
+
+.fondo_articulos {
+  background-color: #fffbf5;
+}
+.fondo_descartado {
+  background-color: #e9ecef;
+}
+
+.titulo_entidad {
+  border-left: 7px solid #9528b5;
+}
+
+.borde_superior_caja {
+  border-bottom: 4px solid #2da4c6;
+}
+.borde_superior_1 {
+  border-top: 1px solid #e9ecef;
+}
+
+#tel_fijo_cod_area,
+#movil_cod_area {
+  width: 5px !important;
+}
+#tel_fijo_numero,
+#movil_numero {
+  width: 70px !important;
+}
+.alto_150 {
+  height: 150px;
+}
+.alto_300 {
+  height: 300px;
+}
+.alto_430 {
+  height: 430px;
+}
+
+.grilla_img_miniatura {
+  width: 80px;
+}
+.grilla_img_miniatura img {
+  width: 70px;
+}
+
+
+#contenedor_mantenimiento {
+  padding: 20px 0px;
+}
+#contenedor_mantenimiento ul li {
+  list-style: none;
+  font-size: 14px;
+  font-weight: bold;
+}
+#contenedor_mantenimiento ul li ul {
+  padding-left: 0;
+}
+
+
+/* Para la Carga Grupal de expedientes/notas en un ítem de la orden del Día de Sesión 
+-------------------------------------------------------------------------------------*/
+.odcg_input {
+  width: 100%;
+  /*background-color: #EEE;*/
+  color: #454B4F;
+  text-align: center;
+  font-size: 11px;
+  border: 0;
+}
+
+/* Dispositivos Extra Pequeños (teléfono vertical (portrait), less than 576px) */
+@media (max-width: 575.98px) {
+
+  input[type=text] {
+    font-family: Arial; 
+  }
+}
+
+/* Pequeños Dispositivos (teléfono apaisado (landscape), 576px y arriba) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+}
+
+/* Dispositivos Medianos (tablets, 768px y arriba) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+
+}
+
+/* Dispositivos Grandes (desktops, 992px y arriba) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+
+}
+
+/* Dispositivos Extra Grandes (large desktops, 1200px y arriba) */
+@media (min-width: 1200px) {
+  
+}
+
+@media (min-width: 992px){
+    .dropdown-menu .dropdown-toggle:after{
+        border-top: .3em solid transparent;
+        border-right: 0;
+        border-bottom: .3em solid transparent;
+        border-left: .3em solid;
+    }
+    .dropdown-menu .dropdown-menu{
+        margin-left:0; margin-right: 0;
+    }
+    .dropdown-menu li{
+        position: relative;
+    }
+    .nav-item .submenu{ 
+        display: none;
+        position: absolute;
+        left:100%; top:-7px;
+    }
+    .nav-item .submenu-left{ 
+        right:100%; left:auto;
+    }
+    .dropdown-menu > li:hover{ background-color: #f1f1f1 }
+    .dropdown-menu > li:hover > .submenu{
+        display: block;
+    }
+}

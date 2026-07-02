@@ -28,7 +28,7 @@ if [ ! -f "src/.env" ]; then
 fi
 
 echo "Sincronizando variables de entorno..."
-./scripts/sync-env
+./scripts/utils/sync-env
 
 echo "Reiniciando contenedor app para aplicar configuración..."
 docker compose restart app

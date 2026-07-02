@@ -1,0 +1,27 @@
+/*
+27/08/2020 XXXX
+Búsqueda Avanzada en formato HTML
+------------------------------------*/
+#pdf_encabezado {
+	font-family: Arial;
+	border-bottom: none;
+}
+.pdf_avanzada_info_expediente {
+	clear: both;
+	font-family: Arial;
+	font-size: 11px;
+	padding: 5px;
+}
+.pdf_avanzada_linea {
+	color: #f5f5f5;
+}
+.pdf_avanzada_ficha_titulo {
+	width: 100px;
+	float: left;
+	text-align: right;
+	padding-right: 3px;
+}
+.pdf_avanzada_ficha_valor {
+	width: 400px;
+	float: left;
+}

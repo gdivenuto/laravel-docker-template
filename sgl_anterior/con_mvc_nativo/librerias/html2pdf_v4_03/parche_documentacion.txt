@@ -1,0 +1,156 @@
+--------------------------------------------------
+25/07/2018
+Se tuvo que retocar la librería html2pdf.class.php
+(la cual se utiliza paa generar PDF a partir de un HTML)
+--------------------------------------------------------
+MOTIVO: no respetaba la alineación, al encontrarse una etiqueta html <b> o <strong>,
+utilizadas para las Comisiones y el Detalle, en el texto del ítem de la Orden del Día de Sesión.
+
+
+PARCHE realizado por XXXX, XXXX:
+----------------------------------------
+En la clase html2pdf.class.php  (se encuentra dentro de sgl/librerias/)
+
+Se modificaron los valores de retorno, true por false, en los siguientes métodos:
+
+LINEA #3526
+protected function _tag_open_B($param, $other = 'b')
+{
+    $this->parsingCss->save();
+    $this->parsingCss->value['font-bold'] = true;
+    $this->parsingCss->analyse($other, $param);
+    $this->parsingCss->setPosition();
+    $this->parsingCss->fontSet();
+
+    return false; //true;
+}
+
+LINEA #3538
+protected function _tag_close_B($param)
+{
+    $this->parsingCss->load();
+    $this->parsingCss->fontSet();
+
+    return false; //true;
+}
+
+
+Características de la librería html2pdf.class.php
+-------------------------------------------------
+ - El componente analiza el HTML.
+
+ - Genera una lista de acciones.
+
+ - Ejecuta las acciones (una accion para cada tag).
+
+
+Uso y Funcionamiento
+--------------------
+ - En el método "crearFormatoPdfOrden()" de la vista "od_sesion.php" del proyecto:
+
+1) Se ejecuta el método: $html2pdf->WriteHTML($contenido_html), al cual se le pasa el contenido HTML a convertir a PDF.
+
+Dicho método:
+
+1.1) Ejecuta el método $this->parsingCss->readStyle($html), el cual extrae los CSS del código HTML.
+
+1.2) Ejecuta el método $this->parsingHtml->setHTML($html), el cual define el html a parsear, eliminando los comentarios html "<!-- -->".
+
+1.3) Ejecuta el método $this->parsingHtml->parse(), el cual parsea el código HTML, definiendo "acciones" para cada etiqueta html.
+
+1.4) Ejecuta el método $this->_makeHTMLcode(), el cual ejecuta las acciones definidas en el método parse(), de cada etiqueta html.
+
+1.5) Por cada elemento a parsear, ejecuta el método $this->_executeAction($this->parsingHtml->code[$this->_tempPos]).
+
+
+Consideraciones a tener en cuenta
+---------------------------------
+
+Notamos que para la etiqueta "<b></b>", la clase html2pdf.class.php utiliza los métodos:
+
+_tag_open_B($param, $other = 'b')
+ y
+_tag_close_B($param)
+
+Donde hemos modificado su valor de retorno.
+
+---
+
+En la vista od_sesion.php
+
+Línea #1732
+----------
+NO se corrige el problema, agregando un punto después del texto del Extracto.
+
+---
+
+En la clase html2pdf.class.php
+
+Línea #1192
+----------
+Método _makeHTMLcode(), para saber bien qué puede llegar a pasar cuando surge el caso puntual
+de encontrarse una etiqueta html al final de una línea "justificada".
+
+Línea #867
+----------
+Método _setNewPositionForNewLine($curr = null)
+
+---
+
+Línea #927
+----------
+Si la alineación es justify => se establece el espaciado de palabras
+
+$this->pdf->setWordSpacing(($wMax-$w)/($e-1));
+                |
+                |
+                v            |
+Clase myPdf.class.php
+Línea #225
+Método setWordSpacing:
+
+public function setWordSpacing($ws=0.) {
+    $this->ws = $ws;
+    $this->_out(sprintf('%.3F Tw', $ws*$this->k));
+}
+
+Primer parámetro: '%.3F Tw'
+---------------------------
+%.3F = un decimal de punto flotante con una precisión de al menos 3 dígitos.
+
+Tw = ???? (T podría ser Top)
+
+
+Segundo parámetro: ($wMax-$w)/($e-1)
+------------------------------------
+$wMax = margen derecho "$rx" - margen izquierdo "$lx"
+
+$w = ancho máximo
+
+$e = número máximo de  elementos en la línea "cantidad de palabras"
+
+$e-1 = cantidad de palabras - 1 => cantidad de espacios entre las palabras en la línea
+
+Por ejemplo:
+$e = 8 => cantidad de espacios en la línea = 7
+
+---
+
+En:
+// for each element of the parsing => load the action
+$res = null;
+for ($sub->_parsePos; $sub->_parsePos<count($sub->parsingHtml->code); $sub->_parsePos++) {
+    $action = $sub->parsingHtml->code[$sub->_parsePos];
+    $res = $sub->_executeAction($action);
+    if (!$res) break;
+}
+
+
+Línea #3270
+-----------
+Se analizó el método _tag_open_WRITE() SIN RESULTADOS.
+
+
+
+
+

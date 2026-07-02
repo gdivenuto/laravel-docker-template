@@ -1,0 +1,298 @@
+a,
+.btn-link,
+.page-link {
+  outline: none;
+  text-decoration: none;
+  color: #2da4c6;
+}
+a:hover,
+.btn-link:hover,
+.page-link:hover {
+  color: #9528b5 !important;
+  text-decoration: none;
+}
+
+.fuente_grande {
+  font-size: 1rem;
+}
+
+#menu_home .nav-link {
+  font-size: 16px;
+  color: #acb1bc;
+}
+#menu_home .nav-link:hover {
+  color: #9528b5 !important;
+}
+.dropdown>.dropdown-menu {
+  border: 0;
+  margin-top: 0;
+  top: 200%;
+  transition: 0.3s all ease-in-out;
+}
+.dropdown:hover>.dropdown-menu {
+  display: block;
+  top: 100%;
+  border-top: 4px solid #9528b5;
+}
+.dropdown>.dropdown-toggle:active {
+  /* Sin esto, al hacer clic lo dejará visible (pegajoso a otro submenú) */
+  pointer-events: none;
+}
+.dropdown>.dropdown-menu>.dropdown-item {
+  font-size: 14px;
+  color: #acb1bc;
+  margin-top: 3px;
+}
+.dropdown>.dropdown-menu>.dropdown-item:hover {
+  color: #9528b5;
+}
+
+#carousel_home {
+  height: 700px;
+  overflow: hidden;
+}
+.carousel-item {
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+.carousel-caption {
+  top: 35%;
+  transform: translateY(-35%);
+  bottom: initial;
+  font-size: 21px;
+  color: #fff;
+  background-color: rgba(0,0,0,0.2) !important;
+  border-radius: 7px;
+  transition: all 0.8s;
+}
+.carousel-caption:hover {
+  background-color: rgba(0,0,0,0.8) !important;
+}
+.carousel-caption a {
+  color: #fff;
+  display: block;
+}
+.carousel-caption a:hover {
+  color: #fff !important;
+}
+
+footer {
+  padding: 20px 0px;
+  background-color: #333;
+  border-top: 3px solid #9528b5;
+  overflow: hidden;
+}
+footer a {
+  font-size: 13px;
+  color: #aaa;
+  text-decoration: none;
+}
+footer a:hover {
+  color: #9528b5;
+}
+footer ul li {
+  list-style: none;
+  font-size: 14px;
+  font-weight: bold;
+  color: #eef5f5;
+}
+footer ul li ul {
+  padding-left: 0;
+}
+footer ul li ul li a {
+  font-weight: normal;
+}
+
+.custom-select-sm,
+.propio_label_expe {
+  margin-top: -6px;
+}
+
+.propio_con_cursor {
+  cursor: pointer;
+}
+.propio_solo_bordes_derechos {
+  border-top-right-radius: 5px !important;
+  border-bottom-right-radius: 5px !important;
+}
+
+.propio_seccion {
+  font-size: 12px;
+  border-top: 1px solid #f5f5f5;
+}
+.propio_seccion_titulo {
+  color: #2da4c6;
+}
+
+/*
+.btn_ir_arriba {
+  width: 40px;
+  height: 40px;
+  position: fixed;
+  bottom: 50px;
+  right: 100px;
+  display: none;
+  text-indent: -9999px;
+  background: url('../imagenes/ir_arriba.png') no-repeat;
+  outline: none;
+}
+*/
+
+.propio_borde_izquierdo_primario {
+  border-left: 4px solid #9528b5;
+}
+.propio_borde_inferior_primario {
+  border-bottom: 2px solid #9528b5;
+}
+.propio_borde_inferior_secundario {
+  border-bottom: 2px solid #2da4c6;
+}
+.propio_borde_superior_secundario {
+  border-top: 2px solid #2da4c6;
+}
+
+.propio_home a {
+  color: #333;
+}
+.propio_home a:hover {
+  color: #2da4c6 !important;
+}
+
+.propio_home_card::before {
+  content: "";
+  background: #333;
+  height: 3px;
+  width: 80px;
+  display: block;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: calc(50% - 40px);
+}
+
+.propio_vista_previa {
+  position: relative;
+  border: 0;
+}
+.propio_vista_previa img {
+  border-radius: 9px !important;
+}
+.propio_vista_previa_titulo {
+  width: 100%;
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0px;
+  font-size: 13px;
+  color: #fff;
+  background-color: rgba(0,0,0,0.2) !important;
+  padding: 5px;
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+  transition: all 0.8s;
+}
+.propio_vista_previa_titulo:hover {
+  background-color: rgba(0,0,0,0.8) !important;
+}
+
+.propio_hoja_de_papel {
+  border: 1px solid #666666;
+  box-shadow: 3px 3px 3px #444;
+  overflow: hidden;
+  background-color: #f5f5f5;
+}
+
+#envivo_control {
+  background-color: #000;
+}
+#envivo_control a {
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  display: inline-block; 
+  width: 208px; 
+  height: 118px;
+}
+
+/* Dispositivos Extra Pequeños (teléfono vertical (portrait), less than 576px) */
+@media (max-width: 575.98px) {
+
+  h6 {
+    font-size: 14px;
+  }
+
+  #cabecera_logo {
+    width: 107px;
+    height: 50px;
+  }
+
+  #carousel_home {
+    height: 189px;
+  }
+  .carousel-caption {
+    width: 90%;
+    top: 5%;
+    left: 5%;
+    transform: translateY(-5%);
+    bottom: initial;
+    font-size: 11px;
+    transition: all 0.8s;
+  }
+  .carousel-caption h5 {
+    font-size: 11px;
+  }
+
+  .propio_xs_espacio_superior_fila {
+    border-top: 15px solid #fff;
+  }
+  .propio_xs_texto_centrado {
+    text-align: center;
+  }
+  .custom-select-sm,
+  .propio_label_expe {
+    margin-top: 5px;
+  }
+}
+
+/* Pequeños Dispositivos (teléfono apaisado (landscape), 576px y arriba) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+  #carousel_home {
+    height: 298px;
+  }
+
+}
+
+/* Dispositivos Medianos (tablets, 768px y arriba) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+
+  #carousel_home {
+    height: 390px;
+  }
+  
+  .carousel-caption {
+    width: 90%;
+    top: 25%;
+    left: 5%;
+    transform: translateY(-25%);
+    bottom: initial;
+    font-size: 14px;
+    transition: all 0.8s;
+  }
+  .carousel-caption h5 {
+    font-size: 18px;
+  }
+}
+
+/* Dispositivos Grandes (desktops, 992px y arriba) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+
+}
+
+/* Dispositivos Extra Grandes (large desktops, 1200px y arriba) */
+@media (min-width: 1200px) {
+  #carousel_home {
+    height: 750px;
+  }
+}

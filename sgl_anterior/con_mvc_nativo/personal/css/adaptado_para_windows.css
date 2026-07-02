@@ -1,0 +1,30 @@
+/************************************************************************
+		MODIFICACIONES CSS PARA WINDOWS
+*************************************************************************/
+#p_nombre {
+	width: 183px;
+}
+#p_lugar_nac {
+	width: 101px;
+}
+#p_entre_calles_legal,
+#p_entre_calles_real,
+#p_zona_barrio_legal,
+#p_zona_barrio_real {
+	width: 437px;
+}
+#p_provincia_legal,
+#p_telefono_legal,
+#p_provincia_real,
+#p_telefono_real {
+	width: 221px;
+}
+#p_tel_mensajes_real {
+	width: 138px;
+}
+.h_edicion_fila_observaciones {
+	height: 137px;
+}
+.p_edicion_margen_celular_tel_mensajes {
+	width: 67px;
+}

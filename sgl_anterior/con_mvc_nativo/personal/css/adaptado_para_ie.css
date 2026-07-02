@@ -1,0 +1,29 @@
+/************************************************************************************
+		CSS ADAPTADO PARA EL NAVEGADOR Internet Explorer
+*************************************************************************************/
+#p_nombre {
+	width: 187px;
+}
+#p_lugar_nac {
+	width: 101px;
+}
+#p_entre_calles_legal,
+#p_entre_calles_real,
+#p_zona_barrio_legal,
+#p_zona_barrio_real {
+	width: 450px;
+}
+#p_provincia_legal,
+#p_provincia_real,
+#p_telefono_legal,
+#p_telefono_real {
+	width: 223px;
+}
+#p_provincia_legal,
+#p_provincia_real {
+	margin-left: 3px;
+}
+#p_tel_mensajes_real {
+	width: 125px;
+}
+
