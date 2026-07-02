@@ -1,85 +1,480 @@
-# Sistema de Gestión (SGL) - Proyecto de Migración
+# Laravel Docker Template
 
-Este repositorio contiene la estructura base para el proceso de migración progresiva del **Sistema de Gestión (SGL)**. El objetivo principal es consolidar, modernizar y unificar múltiples subsistemas antiguos en una arquitectura robusta basada en **Laravel 13** y **PHP 8.3**.
+Plantilla profesional para desarrollo de aplicaciones Laravel utilizando Docker.
 
----
-
-## 🏗️ Estructura del Repositorio
-
-El repositorio se divide en dos secciones principales:
-
-1. **Aplicación Destino (Laravel 13 - Raíz del proyecto):** Contiene el código modernizado y unificado bajo los estándares actuales de Laravel, usando PHP 8.3, Vite y PHPUnit/Pest.
-2. **Subsistemas Anteriores (`sgl_anterior/`):** Almacena el código original de los sistemas que se están migrando progresivamente:
-   - `sgl_anterior/biblioteca_anterior/`: Desarrollado con versiones antiguas de Laravel (5.8 o 7).
-   - `sgl_anterior/inventario_anterior/`: Desarrollado con versiones antiguas de Laravel (5.8 o 7).
-   - `sgl_anterior/con_mvc_nativo/`: Sistema desarrollado en PHP nativo, arquitectura MVC propia y jQuery.
+El objetivo de este proyecto es disponer de un entorno de desarrollo moderno, reproducible y fácil de utilizar, eliminando la necesidad de instalar Apache, PHP, MySQL, Node.js y demás herramientas directamente en el sistema operativo.
 
 ---
 
-## 🛠️ Requisitos Previos
+# Características
 
-Asegúrate de contar con el siguiente entorno configurado localmente:
-- **PHP** >= 8.3
-- **Composer** (para dependencias de PHP)
-- **Node.js** & **npm** (para la compilación de assets con Vite)
-- **MySQL** (motor de base de datos del sistema)
+* PHP 8.4
+* Apache
+* MySQL 8.4
+* phpMyAdmin
+* Node.js 22
+* Mailpit
+* Docker Compose
+* Composer
+* Vite
+* Configuración optimizada para Laravel
+* Scripts de automatización
+* Inicialización automática del proyecto
+* Sincronización automática de variables de entorno
 
 ---
 
-## 🚀 Inicialización y Configuración
+# Requisitos
 
-El proyecto cuenta con scripts de Composer para automatizar y agilizar el setup de desarrollo:
+* Docker
+* Docker Compose
 
-### 1. Configuración de Variables de Entorno
-Copia el archivo de ejemplo de variables de entorno y ajusta las credenciales de tu base de datos y otras configuraciones locales:
+No es necesario instalar:
+
+* Apache
+* PHP
+* Composer
+* MySQL
+* Node.js
+
+Todo se ejecuta dentro de los contenedores Docker.
+
+---
+
+# Estructura del proyecto
+
+```
+laravel-docker-template/
+│
+├── .env.example
+├── .gitignore
+├── README.md
+├── Dockerfile
+├── docker-compose.yml
+│
+├── apache/
+│   └── 000-default.conf
+│
+├── docker/
+│   ├── entrypoint.sh
+│   └── php.ini
+│
+├── scripts/
+│   ├── docker/
+│   ├── frontend/
+│   ├── laravel/
+│   └── utils/
+│
+├── src/
+│
+└── dev
+```
+
+---
+
+# Instalación
+
+## 1. Clonar el repositorio
+
+```bash
+git clone https://github.com/gdivenuto/laravel-docker-template.git
+cd laravel-docker-template
+```
+
+## 2. Crear el archivo de configuración
+
 ```bash
 cp .env.example .env
 ```
 
-### 2. Inicialización Automática
-Ejecuta el comando de instalación automatizada. Este comando instalará las dependencias de Composer y NPM, generará la clave de la aplicación, ejecutará las migraciones pendientes y compilará los assets iniciales:
-```bash
-composer run setup
+## 3. Configurar variables
+
+Editar únicamente:
+
+```
+.env
 ```
 
-### 3. Servidor de Desarrollo
-Levanta todos los servicios concurrentes de desarrollo (servidor de Laravel, procesador de colas, logger de Laravel Pail y Vite) en una sola consola con el siguiente comando:
-```bash
-composer run dev
+Ejemplo:
+
+```env
+PROJECT_NAME=ecommerce
+
+APP_PORT=8080
+
+MYSQL_PORT=3307
+MYSQL_DATABASE=ecommerce_db
+MYSQL_USER=ecommerce_user
+MYSQL_PASSWORD=secret
+
+PMA_PORT=8081
+
+MAILPIT_PORT=8025
+
+NODE_PORT=5173
 ```
 
-### 4. Ejecución de Pruebas
-Para limpiar configuraciones previas y ejecutar la suite de pruebas unitarias y de integración:
+**No modificar** `src/.env` manualmente.
+
+---
+
+## 4. Inicializar el proyecto
+
 ```bash
-composer run test
+./dev init
+```
+
+Este comando:
+
+* Levanta Docker
+* Crea Laravel (si no existe)
+* Sincroniza variables
+* Instala dependencias
+* Genera APP_KEY
+* Ejecuta migraciones
+* Crea el enlace de storage
+
+---
+
+# Uso diario
+
+## Iniciar el entorno
+
+```bash
+./dev up
+```
+
+## Ejecutar Vite
+
+```bash
+./dev vite
+```
+
+## Finalizar la jornada
+
+```bash
+./dev down
 ```
 
 ---
 
-## 📋 Estrategia de Migración Progresiva
+# Comandos disponibles
 
-Para mantener el sistema seguro, escalable y evitar riesgos de regresión, se debe seguir la siguiente estrategia al migrar funcionalidades desde `sgl_anterior/`:
+## Docker
 
-1. **Análisis de Impacto:** Antes de migrar código, analiza su funcionamiento en el subsistema original, sus dependencias y las bases de datos implicadas.
-2. **Migración de Base de Datos:**
-   - Escribe migraciones de Laravel para recrear o adaptar tablas antiguas.
-   - Declara correctamente claves primarias, foráneas e índices para búsquedas frecuentes.
-   - Evita cambios destructivos sin previa planificación y aviso.
-3. **Migración de Lógica (PHP Nativo / Laravel Antiguo a Laravel 13):**
-   - Transforma controladores nativos o antiguos en controladores de Laravel modernos y estructurados.
-   - Extrae la lógica de negocio a servicios (`Services`) o capas de persistencia adecuadas (modelos Eloquent).
-   - Valida datos de entrada mediante `FormRequests` de Laravel.
-4. **Migración de Vistas y Assets:**
-   - Migra las plantillas a Blade usando componentes reutilizables.
-   - Si usas jQuery o JavaScript personalizado de los subsistemas antiguos, limpia dependencias redundantes y asegúrate de que sean compatibles con PHP 8.x/Vite.
-5. **Pruebas y Verificación:** Escribe tests con Pest/PHPUnit para las rutas y funcionalidades nuevas para asegurar que el comportamiento original se preserva.
+Subir el entorno
+
+```bash
+./dev up
+```
+
+Bajar el entorno
+
+```bash
+./dev down
+```
+
+Reconstruir imágenes
+
+```bash
+./dev rebuild
+```
+
+Eliminar contenedores y volúmenes
+
+```bash
+./dev fresh
+```
+
+Ver contenedores
+
+```bash
+./dev ps
+```
+
+Ver logs
+
+```bash
+./dev logs
+```
+
+Logs de un servicio
+
+```bash
+./dev logs app
+
+./dev logs mysql
+```
+
+Ingresar al contenedor
+
+```bash
+./dev bash
+```
 
 ---
 
-## 🔒 Reglas Importantes de Desarrollo y Seguridad
+## Laravel
 
-* **Seguridad de Datos:** Nunca subas credenciales, tokens, API keys ni información sensible en los archivos del repositorio. Mantén las configuraciones en el archivo `.env`.
-* **Compatibilidad de PHP:** Todo código migrado debe ser compatible con PHP 8.3+. Evita usar funciones deprecadas de versiones antiguas de PHP.
-* **Consultas Eficientes:** Optimiza las queries para evitar el problema de consultas N+1. Utiliza `eager loading` (`with()`) en Eloquent donde sea necesario.
-* **Dependencias:** No instales paquetes de terceros (`composer require` o `npm install`) a menos que sea estrictamente necesario y se haya validado su mantenimiento y compatibilidad. Prioriza soluciones nativas y mantenibles.
-* **Mantenimiento de Arquitectura:** Respeta los patrones de diseño de Laravel y la estructura establecida. Si necesitas modificar nombres de tablas, columnas o rutas existentes, adviértelo al equipo de desarrollo previamente.
+Ejecutar Artisan
+
+```bash
+./dev artisan
+```
+
+Ejemplos
+
+```bash
+./dev artisan make:model Producto -mcr
+
+./dev artisan optimize
+
+./dev artisan route:list
+```
+
+Migraciones
+
+```bash
+./dev migrate
+```
+
+Composer
+
+```bash
+./dev composer install
+
+./dev composer update
+
+./dev composer require livewire/livewire
+```
+
+Tinker
+
+```bash
+./dev tinker
+```
+
+Tests
+
+```bash
+./dev test
+```
+
+---
+
+## Frontend
+
+Instalar dependencias
+
+```bash
+./dev npm install
+```
+
+Servidor Vite
+
+```bash
+./dev vite
+```
+
+Build de producción
+
+```bash
+./dev build
+```
+
+---
+
+## Utilidades
+
+Inicializar proyecto
+
+```bash
+./dev init
+```
+
+Sincronizar variables de entorno
+
+```bash
+./dev sync-env
+```
+
+---
+
+# Servicios
+
+## Aplicación Laravel
+
+```
+http://localhost:8080
+```
+
+## phpMyAdmin
+
+```
+http://localhost:8081
+```
+
+## Mailpit
+
+```
+http://localhost:8025
+```
+
+---
+
+# Variables de entorno
+
+La plantilla utiliza dos archivos `.env`.
+
+## Raíz del proyecto
+
+```
+.env
+```
+
+Es el único archivo que debe modificarse.
+
+Contiene la configuración de Docker.
+
+## Laravel
+
+```
+src/.env
+```
+
+Se genera automáticamente.
+
+No debería modificarse manualmente para la configuración de la base de datos.
+
+---
+
+# Base de datos
+
+Host
+
+```
+mysql
+```
+
+Puerto interno
+
+```
+3306
+```
+
+Puerto externo
+
+Definido por:
+
+```
+MYSQL_PORT
+```
+
+---
+
+# Mailpit
+
+Laravel queda configurado automáticamente para enviar correos a Mailpit.
+
+No es necesario utilizar Gmail durante el desarrollo.
+
+Interfaz web:
+
+```
+http://localhost:8025
+```
+
+---
+
+# phpMyAdmin
+
+Permite administrar la base de datos desde el navegador.
+
+URL:
+
+```
+http://localhost:8081
+```
+
+Usuario:
+
+```
+MYSQL_USER
+```
+
+Contraseña:
+
+```
+MYSQL_PASSWORD
+```
+
+---
+
+# Flujo de trabajo recomendado
+
+Al comenzar el día
+
+```bash
+./dev up
+
+./dev vite
+```
+
+Durante el desarrollo
+
+```bash
+./dev artisan make:controller ProductoController
+
+./dev composer require paquete
+
+./dev migrate
+```
+
+Al finalizar
+
+```bash
+./dev down
+```
+
+---
+
+# Buenas prácticas
+
+* Versionar todo el proyecto, incluyendo Docker.
+* No versionar `.env`.
+* No versionar `src/.env`.
+* No versionar `vendor`.
+* No versionar `node_modules`.
+* Mantener Docker como única fuente del entorno de desarrollo.
+
+---
+
+# Próximas mejoras
+
+* Redis
+* Queue Worker
+* Scheduler
+* Xdebug
+* Perfiles de Docker Compose
+* Docker Compose para producción
+* Backups automáticos
+* Restauración de bases de datos
+* Integración con Horizon
+* Integración con Reverb
+* Plantillas para APIs y microservicios
+
+---
+
+# Licencia
+
+MIT License
+
+---
+
+# Autor
+
+Gabriel Eduardo Divenuto
+
+Licenciado en Informática
+
+Desarrollador Full Stack PHP / Laravel
