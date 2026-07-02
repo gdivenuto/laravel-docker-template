@@ -61,11 +61,7 @@ Nunca exponer ni modificar sin advertencia:
 - API keys
 - Archivos `.env`
 - Datos de usuarios del sistema
-- Datos personales de los legajos
-- Datos de firma digital
-- Datos de organismos públicos
-- Datos de decretos, ordenanzas y normativas
-- Datos de expedientes
+- Datos personales
 - Datos de documentos
 
 Si se detectan credenciales en el código, advertirlo.
