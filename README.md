@@ -1,8 +1,6 @@
-# Laravel Docker Template
+# Laravel Docker Template — Entorno de desarrollo con ./dev
 
-Plantilla para desarrollar aplicaciones Laravel con Docker. Incluye una aplicación Laravel 13 en `src/`, PHP 8.4 con Apache, MySQL 8.4, phpMyAdmin, Node.js 22, Composer, Vite y Mailpit.
-
-Las herramientas se ejecutan dentro de contenedores: no es necesario instalar PHP, Apache, MySQL, Composer ni Node.js en el equipo. El comando `./dev` centraliza la administración del entorno.
+Plantilla para desarrollar aplicaciones Laravel con Docker, administrada mediante el comando ./dev. Permite inicializar el proyecto, gestionar los servicios y ejecutar Artisan, Composer y npm desde una única interfaz.
 
 ## Requisitos
 
