@@ -1,6 +1,6 @@
 # Laravel Docker Template
 
-Plantilla profesional para desarrollo de aplicaciones Laravel utilizando Docker.
+Plantilla para desarrollo de aplicaciones Laravel utilizando Docker.
 
 El objetivo de este proyecto es disponer de un entorno de desarrollo moderno, reproducible y fácil de utilizar, eliminando la necesidad de instalar Apache, PHP, MySQL, Node.js y demás herramientas directamente en el sistema operativo.
 
