@@ -72,14 +72,20 @@ laravel-docker-template/
 
 ---
 
-# Instalación
+# Uso
 
-## 1. Clonar el repositorio
+## 1.a. Clonar el repositorio
 
 ```bash
 git clone https://github.com/gdivenuto/laravel-docker-template.git
 cd laravel-docker-template
 ```
+## 1.b. Usarlo como Template (recomendado)
+Utilizar la opción **Use this template** (arriba a la derecha, botón verde)
+
+Elegir **Create a new repository**
+
+Completar los datos en base al proyecto que se desea crear con dicho template.
 
 ## 2. Crear el archivo de configuración
 
@@ -87,24 +93,30 @@ cd laravel-docker-template
 cp .env.example .env
 ```
 
-## 3. Configurar variables
+## 3. Configurar variables de entorno
 
-Editar únicamente:
+La plantilla utiliza dos archivos `.env`.
+
+Editar **únicamente** el del **raíz del proyecto**:
 
 ```
 .env
 ```
 
+Es el único archivo que debe modificarse.
+
+Utilizado para la configuración de Docker Compose.
+
 Ejemplo:
 
 ```env
-PROJECT_NAME=ecommerce
+PROJECT_NAME=nombre_proyecto
 
 APP_PORT=8080
 
 MYSQL_PORT=3307
-MYSQL_DATABASE=ecommerce_db
-MYSQL_USER=ecommerce_user
+MYSQL_DATABASE=nombre_proyecto_db
+MYSQL_USER=nombre_proyecto_user
 MYSQL_PASSWORD=secret
 
 PMA_PORT=8081
@@ -133,6 +145,10 @@ Este comando:
 * Genera APP_KEY
 * Ejecuta migraciones
 * Crea el enlace de storage
+
+```bash
+./dev npm install
+```
 
 ---
 
@@ -284,22 +300,6 @@ Build de producción
 
 ---
 
-## Utilidades
-
-Inicializar proyecto
-
-```bash
-./dev init
-```
-
-Sincronizar variables de entorno
-
-```bash
-./dev sync-env
-```
-
----
-
 # Servicios
 
 ## Aplicación Laravel
@@ -319,22 +319,6 @@ http://localhost:8081
 ```
 http://localhost:8025
 ```
-
----
-
-# Variables de entorno
-
-La plantilla utiliza dos archivos `.env`.
-
-## Raíz del proyecto
-
-```
-.env
-```
-
-Es el único archivo que debe modificarse.
-
-Contiene la configuración de Docker.
 
 ## Laravel
 
@@ -446,22 +430,6 @@ Al finalizar
 * No versionar `vendor`.
 * No versionar `node_modules`.
 * Mantener Docker como única fuente del entorno de desarrollo.
-
----
-
-# Próximas mejoras
-
-* Redis
-* Queue Worker
-* Scheduler
-* Xdebug
-* Perfiles de Docker Compose
-* Docker Compose para producción
-* Backups automáticos
-* Restauración de bases de datos
-* Integración con Horizon
-* Integración con Reverb
-* Plantillas para APIs y microservicios
 
 ---
 
